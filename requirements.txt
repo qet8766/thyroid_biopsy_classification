@@ -1,0 +1,9 @@
+numpy
+pillow
+timm
+torch
+torchvision
+huggingface_hub
+opencv-python-headless
+tqdm
+scikit-learn

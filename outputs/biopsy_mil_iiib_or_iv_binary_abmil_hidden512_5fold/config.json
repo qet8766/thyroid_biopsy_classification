@@ -1,0 +1,38 @@
+{
+  "labels_csv": "/mnt/fastpath_d/thyroid/_pipeline/uni_thyroid_patch256/biopsy_embedding_labels.csv",
+  "output_dir": "outputs/biopsy_mil_iiib_or_iv_binary_abmil_hidden512_5fold",
+  "target_mode": "binary",
+  "target_classes": null,
+  "binary_positive_labels": [
+    "IIIb"
+  ],
+  "binary_positive_majors": [
+    "IV"
+  ],
+  "models": [
+    "abmil"
+  ],
+  "folds": 5,
+  "epochs": 20,
+  "patience": 5,
+  "val_fraction": 0.15,
+  "seed": 2026,
+  "device": "auto",
+  "hidden_dim": 512,
+  "attention_dim": 256,
+  "dropout": 0.25,
+  "lr": 0.0001,
+  "weight_decay": 0.0001,
+  "max_patches": 1024,
+  "eval_max_patches": 1024,
+  "min_patches": 1,
+  "normalize": true,
+  "normalizer_max_patches": 2048,
+  "cache_in_memory": true,
+  "threshold_metric": "balanced_accuracy",
+  "selection_metric": "roc_auc",
+  "calibrate_class_bias": false,
+  "calibration_metric": "balanced_accuracy",
+  "attention_topk": 20,
+  "no_plots": false
+}

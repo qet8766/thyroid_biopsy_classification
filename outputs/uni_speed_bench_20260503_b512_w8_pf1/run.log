@@ -1,0 +1,6 @@
+[2026-05-03T09:29:46+00:00] start b512_w8_pf1
+Found 6 H&E FastPATH slides under /mnt/fastpath_d/thyroid/resection matching 6 case-list entries
+Loaded hf-hub:MahmoodLab/uni on cuda
+Slides:   0%|          | 0/6 [00:00<?, ?slide/s]Slides:  17%|█▋        | 1/6 [00:09<00:47,  9.56s/slide]Slides:  33%|███▎      | 2/6 [00:18<00:36,  9.14s/slide]Slides:  50%|█████     | 3/6 [00:27<00:28,  9.34s/slide]Slides:  67%|██████▋   | 4/6 [00:36<00:18,  9.13s/slide]Slides:  83%|████████▎ | 5/6 [00:45<00:08,  8.92s/slide]Slides: 100%|██████████| 6/6 [00:59<00:00, 10.69s/slide]Slides: 100%|██████████| 6/6 [00:59<00:00,  9.91s/slide]
+Manifest: /home/eteriny/projects/foundation_inference/outputs/uni_speed_bench_20260503_b512_w8_pf1/manifest.csv
+[2026-05-03T09:30:52+00:00] done b512_w8_pf1

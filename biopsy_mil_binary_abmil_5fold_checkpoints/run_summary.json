@@ -1,0 +1,25 @@
+{
+  "elapsed_s": 103.808189868927,
+  "summary": [
+    {
+      "model": "abmil",
+      "folds": 5,
+      "test_roc_auc_mean": 0.9854779957702681,
+      "test_roc_auc_std": 0.006515076427689486,
+      "test_average_precision_mean": 0.9766861011254097,
+      "test_average_precision_std": 0.011130511152153655,
+      "test_accuracy_mean": 0.936973323360758,
+      "test_accuracy_std": 0.020487700269138466,
+      "test_balanced_accuracy_mean": 0.9375516728913903,
+      "test_balanced_accuracy_std": 0.01305930949219051,
+      "test_f1_mean": 0.9080463980463982,
+      "test_f1_std": 0.02712930050347141,
+      "test_precision_mean": 0.8821217969159008,
+      "test_precision_std": 0.06619939616354377,
+      "test_recall_sensitivity_mean": 0.9391193036354327,
+      "test_recall_sensitivity_std": 0.026134621075499805,
+      "test_specificity_mean": 0.9359840421473479,
+      "test_specificity_std": 0.03858255348386279
+    }
+  ]
+}

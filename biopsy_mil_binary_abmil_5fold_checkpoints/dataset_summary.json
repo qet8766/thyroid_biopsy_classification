@@ -1,0 +1,48 @@
+{
+  "labels_csv": "/mnt/fastpath_d/thyroid/_pipeline/uni_thyroid_patch256/biopsy_embedding_labels.csv",
+  "target_mode": "binary",
+  "class_names": [
+    "negative",
+    "positive"
+  ],
+  "raw_rows": 970,
+  "used_rows": 951,
+  "positive_rows": 312,
+  "negative_rows": 639,
+  "unique_cases": 775,
+  "skipped": {
+    "non_target_label": 2,
+    "missing_embedding": 0,
+    "below_min_patches": 17,
+    "load_error": 0
+  },
+  "label_counts": {
+    "I": 7,
+    "II": 100,
+    "III": 4,
+    "IIIa": 65,
+    "IIIb": 248,
+    "IIIc": 52,
+    "IIId": 38,
+    "IIIe": 3,
+    "IV": 33,
+    "IVa": 65,
+    "IVb": 11,
+    "IVc": 11,
+    "IVd": 2,
+    "V": 46,
+    "VI": 266
+  },
+  "target_counts": {
+    "negative": 639,
+    "positive": 312
+  },
+  "patch_count": {
+    "min": 17,
+    "median": 973.0,
+    "mean": 1105.7024185068349,
+    "max": 6154
+  },
+  "input_dim": 1024,
+  "device": "cuda"
+}
