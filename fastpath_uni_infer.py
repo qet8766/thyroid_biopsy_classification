@@ -488,6 +488,22 @@ def iter_batches(items: list[PatchRecord], batch_size: int) -> Iterable[list[Pat
         yield items[start : start + batch_size]
 
 
+def order_patches_for_batches(patches: list[PatchRecord], batch_order: str) -> list[PatchRecord]:
+    if batch_order == "row-major":
+        return patches
+    if batch_order == "source-tile":
+        return sorted(
+            patches,
+            key=lambda record: (
+                record.source_row,
+                record.source_col,
+                record.subtile_row,
+                record.subtile_col,
+            ),
+        )
+    raise ValueError(f"unsupported batch_order: {batch_order}")
+
+
 def run_slide_inference(
     plan: SlidePlan,
     output_path: Path,
@@ -503,6 +519,7 @@ def run_slide_inference(
     image_size: int,
     profile_sync: bool,
     prefetch_batches: int,
+    batch_order: str,
 ) -> tuple[int, int]:
     embeddings: list[np.ndarray] = []
     tile_rc: list[tuple[int, int]] = []
@@ -535,7 +552,8 @@ def run_slide_inference(
                     source_keys = list(dict.fromkeys((record.source_row, record.source_col) for record in records))
                     return records, [(key, pool.submit(decode_one, *key)) for key in source_keys]
 
-                batch_iter = iter(iter_batches(plan.selected_patches, batch_size))
+                ordered_patches = order_patches_for_batches(plan.selected_patches, batch_order)
+                batch_iter = iter(iter_batches(ordered_patches, batch_size))
                 pending: list[tuple[list[PatchRecord], list]] = []
 
                 def append_next_batch() -> bool:
@@ -613,7 +631,12 @@ def run_slide_inference(
                                 torch.cuda.synchronize()
 
                     with nvtx_range(torch, "batch:to_cpu"):
-                        features = output.detach().float().cpu().numpy()
+                        detached = output.detach()
+                        if output_dtype == "float16":
+                            detached = detached.to(dtype=torch.float16)
+                        else:
+                            detached = detached.float()
+                        features = detached.cpu().numpy()
                         if features.ndim > 2:
                             features = features.reshape(features.shape[0], -1)
                         embeddings.append(features.astype(output_dtype, copy=False))
@@ -769,6 +792,12 @@ def parse_args() -> argparse.Namespace:
         default=1,
         help="Number of decoded batches to keep queued ahead of GPU work. Use 0 to disable.",
     )
+    parser.add_argument(
+        "--batch-order",
+        choices=["row-major", "source-tile"],
+        default="row-major",
+        help="Patch ordering within inference batches. source-tile groups quadrants from the same FastPATH tile.",
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
@@ -886,6 +915,7 @@ def main() -> int:
                     image_size=image_size,
                     profile_sync=args.profile_sync,
                     prefetch_batches=args.prefetch_batches,
+                    batch_order=args.batch_order,
                 )
                 status = "ok"
 

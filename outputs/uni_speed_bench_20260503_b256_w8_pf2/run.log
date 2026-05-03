@@ -1,2 +1,6 @@
-[2026-05-03T09:31:58+00:00] start b256_w8_pf2
-python3: can't open file '/home/eteriny/projects/foundation_inference/fastpath_uni_infer.py': [Errno 2] No such file or directory
+[2026-05-03T09:32:40+00:00] start b256_w8_pf2
+Found 6 H&E FastPATH slides under /mnt/fastpath_d/thyroid/resection matching 6 case-list entries
+Loaded hf-hub:MahmoodLab/uni on cuda
+Slides:   0%|          | 0/6 [00:00<?, ?slide/s]Slides:  17%|█▋        | 1/6 [00:09<00:46,  9.20s/slide]Slides:  33%|███▎      | 2/6 [00:17<00:35,  8.87s/slide]Slides:  50%|█████     | 3/6 [00:27<00:27,  9.16s/slide]Slides:  67%|██████▋   | 4/6 [00:35<00:17,  8.92s/slide]Slides:  83%|████████▎ | 5/6 [00:44<00:08,  8.73s/slide]Slides: 100%|██████████| 6/6 [00:58<00:00, 10.43s/slide]Slides: 100%|██████████| 6/6 [00:58<00:00,  9.67s/slide]
+Manifest: /home/eteriny/projects/foundation_inference/outputs/uni_speed_bench_20260503_b256_w8_pf2/manifest.csv
+[2026-05-03T09:33:45+00:00] done b256_w8_pf2
